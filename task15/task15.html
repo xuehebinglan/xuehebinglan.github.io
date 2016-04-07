@@ -51,7 +51,7 @@ function getData() {
 	var data = new Array;
 	for (var i = 0; i < lili.length; ++i){
 		data[i] = new Array();
-		data[i][0] = lili[i].innerText.substring(0,data[i].lastIndexOf('空气质量'));
+		data[i][0] = lili[i].innerText.substring(0,lili[i].innerText.indexOf('空'));
 		data[i][1] = parseInt(lili[i].getElementsByTagName("b")[0].innerText);
 	}
 	// console.log(data);
