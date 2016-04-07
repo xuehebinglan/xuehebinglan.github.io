@@ -51,7 +51,7 @@ function getData() {
 	var data = new Array;
 	for (var i = 0; i < lili.length; ++i){
 		data[i] = new Array();
-		data[i][0] = lili[i].innerText.substring(0,2);
+		data[i][0] = lili[i].innerText.substring(0,data[i].lastIndexOf('空气质量'));
 		data[i][1] = parseInt(lili[i].getElementsByTagName("b")[0].innerText);
 	}
 	// console.log(data);
@@ -78,7 +78,7 @@ function render(data) {
 	var ulul = document.getElementById("resort");
 	for (var i = 0; i < data.length; ++i) {
 		var lili = document.createElement("li");
-		lili.innerHTML = '第' + (i + 1) + '名: ' + data[i][0] + '空气质量： ' + data[i][1] ;
+		lili.innerHTML = '第' + (i + 1) + '名: ' + data[i][0] + '空气质量： ' + '<b>' + data[i][1] + '</b>';
 		ulul.appendChild(lili);
 		console.log(lili.innerText);
 	}
@@ -95,6 +95,7 @@ function init() {
 
 	// 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
 	document.getElementById("sort-btn").onclick = btnHandle;
+	
 }
 
 init();
