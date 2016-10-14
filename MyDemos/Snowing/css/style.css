@@ -1,0 +1,10 @@
+body{
+  background:#000;
+  margin:0;
+}
+canvas{
+/*  不要在这里设置宽高，会变形！！！  */
+  display:block;
+/*   background:#fff; */
+  
+}
