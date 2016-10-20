@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Keywords" content="关键词，关键词">
+	<meta name="Desription" conten="描述">
+	<title>天猫放大镜特效-千凡老师</title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0; 
+		padding:0;}
+	.box{
+		width: 420px;
+		height:420px;
+		background: #ff0066;
+		margin:100px;
+		position: relative;
+	}
+	.box .simg{
+		width:420px;
+		height: 420px;
+	}
+	.box .move{
+		width: 220px;
+		height: 220px;
+		background: url(images/T12pdtXaldXXXXXXXX-2-2.png);
+		position: absolute;
+		left:10px;
+		top:10px;
+	}
+	.box .bimg{
+		width: 420px;
+		height: 420px;
+		background: red;
+		position: absolute;
+		left:450px;
+		top:0px;
+		overflow: hidden;
+		display: none;
+
+	}
+	.box .b-img{
+		width: 800px;
+		height: 800px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		
+	}
+	</style>
+
+	<body>
+		<div class ="box">
+			<img class="simg" src="images/simg.jpg" width="430" height="430" alt=""/>
+			<div class="move"></div>
+			<div class="bimg">
+				<img class="b-img" src="images/simg.jpg" width="430" height="430" alt=""/>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.js">
+	</script>
+	<script>
+		// alert($); 确定是否引入成功jq
+		$('.box').hover(function(){
+			// alert('移入');
+			$('.move').show();
+			$('.bimg').show();
+		},function(){
+			$('.move').hide();
+			$('.bimg').hide();
+		});
+		var x=0,y=0,l=0,t=0;
+		$('.move').mousemove(function(e){
+			var ev = e||window.event;//解决ie和火狐浏览器兼容问题
+			x = ev.clientX;//鼠标初始坐标x
+			y = ev.clientY;//鼠标初始坐标y
+			// alert(x);
+			l = $('.box').offset().left;
+			t = $('.box').offset().top;
+			var nowLeft = x - l- $(this).width()/2; 
+			var nowTop = y - t-$(this).height()/2;
+			var max_w =$('.box').width()-$(this).width();
+			var max_h =$('.box').height()-$(this).height();
+			if(nowLeft<0){
+				nowLeft=0;
+			}
+			if(nowLeft>max_w){
+				nowLeft=max_w;
+			}
+			if(nowTop<0){
+				nowTop=0;
+			}
+			if(nowTop>max_h){
+				nowTop=max_h;
+			}
+
+			$(this).css({
+				left:nowLeft,
+				top:nowTop
+			});
+			var w = nowLeft/$('.box').width();
+			var h = nowTop/$('.box').height();
+			var _left = w*$('.b-img').width();
+			var _top = h*$('.b-img').height();
+			// alert(_left);
+			$('b-img').css({
+				left:$('.b-img').left()-_left,
+				top:_top
+			});
+		});
+	</script>
+	</html>
